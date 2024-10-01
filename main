@@ -14,7 +14,7 @@ typedef struct navio{
 
 int menu(); //Opções do menu . Usa int pq retorna um valor do tipo inteiro que é necessário pro programa
 void ajuda(); //Informações de como jogar  
-void set(int *t, int *n); //Tela de configurações. Atualização do número de tentativas e navios
+void set(int *t, int *n); //Atualização do número de tentativas e navios
 void jogar(int t, int n); //Função para jogar
 void sair(); //Mensagem de despedida
 
@@ -47,5 +47,25 @@ void ajuda(){
     printf("Pressione <ENTER> para voltar ao menu.");
 
     scanf("\n"); // ou é getchar()? 
+  
+}
+
+//quantidade de navios e quantidade de tentativas ficam aqui 
+void set (){
+
+}
+
+//tem que criar uma função pra verificar se a coordenada do navio existe mesmo
+
+void print_navios (){
+
+}
+
+int cria_tabuleiro (){
+
+} //tem que salvar as informações do usuario e depois imprimer o tabuleiro preenchido
+
+//Jogar
+void jogar (){
   
 }
