@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h> 
+#include "cores.h" //n sei ainda se poe, seria pra quando acerta ou erra (verde, vermelho)
+
+#define MAX 10 //matriz 10x10
+
+//Estrutura para navios. Cada navio tem uma coordenada linhaxcoluna
+typedef struct navio{ 
+  int linha;  
+  int coluna; 
+}
+
+
+int menu(); //Opções do menu . Usa int pq retorna um valor do tipo inteiro que é necessário pro programa
+void ajuda(); //Informações de como jogar  
+void set(int *t, int *n); //Tela de configurações. Atualização do número de tentativas e navios
+void jogar(int t, int n); //Função para jogar
+void sair(); //Mensagem de despedida
+
+int menu () {
+    int opcao;
+
+    printf("\n Escolha uma opção: \n");
+    printf("1 - Novo jogo \n");
+    printf("2 - Configuração \n");
+    printf("3 - Ajuda \n");
+    printf("4 - Sair \n");
+    printf("Digite a opção escolhida: ");
+    
+    scanf("%d", &opcao);
+
+    while((opcao != 1) && (opcao != 2) && (opcao != 3) && (opcao != 4));
+    return opcao;   
+    
+}
+
+void ajuda(){
+    int opcao;
+  
+    printf("\n Bem-vindo à ajuda do jogo! \n");
+    printf("O objetivo é acertar todos os navios inimigos escondidos no tabuleiro. \n");
+    printf("Você deverá inserir coordenadas para tentar acertar os navios. \n"); //Aqui explicar melhor dps
+    printf("Boa sorte! \n");
+
+    printf("\n\n");
+    printf("Pressione <ENTER> para voltar ao menu.");
+
+    scanf("\n"); // ou é getchar()? 
+  
+}
