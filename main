@@ -51,9 +51,31 @@ void ajuda(){
 }
 
 //quantidade de navios e quantidade de tentativas ficam aqui 
-void set (){
+void set (int *t, int *n){
+  do{
+      printf("\nDigite a quantidade de NAVIOS <3>: ");
+      scanf("%d",n);
+      if((*n<1)||(*n>10)){ 
+        printf("%s",BRed); //vermelho
+        printf("A quantidade de NAVIOS precisa ser >= 1 e <=10.");
+        printf("%s",reset); // reset cores
+      }
+    }while((*n < 1)||(*n>10)); 
+    do{
+      printf("\nDigite a quantidade de TENTATIVAS <10>: ");
+      scanf("%d",t);
+      if((*t<1)||(*t<=*n)){ 
+        printf("%s",BRed); //vermelho
+        printf("A quantidade de TENTATIVAS precisa ser >= 1 e >= a quantidade de NAVIOS (%d).",*n);
+        printf("%s",reset); // reset cores
+      }
+    }while((*t < 1)||(*t<=*n)); //Limite das tentativas
 
+    printf("\n\n-----------------------------------%s",BRed); //vermelho
+    printf("\nNAVIOS = %d\nTENTATIVAS = %d.\nConfiguração efetuada com sucesso!\n",*n, *t);
+    printf("%s-----------------------------------",reset); // reset cores
 }
+
 
 //tem que criar uma função pra verificar se a coordenada do navio existe mesmo
 
