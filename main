@@ -52,28 +52,35 @@ void ajuda(){
 
 //quantidade de navios e quantidade de tentativas ficam aqui 
 void set (int *t, int *n){
-  do{
+  do {
       printf("\nDigite a quantidade de NAVIOS <3>: ");
-      scanf("%d",n);
-      if((*n<1)||(*n>10)){ 
-        printf("%s",BRed); //vermelho
-        printf("A quantidade de NAVIOS precisa ser >= 1 e <=10.");
-        printf("%s",reset); // reset cores
+      scanf("%d", n);
+      if((*n < 1) || (*n > 10)){ 
+        printf("%s", BRed); // vermelho
+        printf("A quantidade de NAVIOS precisa ser >= 1 e <= 10.");
+        printf("%s", reset); // reset cores
       }
-    }while((*n < 1)||(*n>10)); 
-    do{
-      printf("\nDigite a quantidade de TENTATIVAS <10>: ");
-      scanf("%d",t);
-      if((*t<1)||(*t<=*n)){ 
-        printf("%s",BRed); //vermelho
-        printf("A quantidade de TENTATIVAS precisa ser >= 1 e >= a quantidade de NAVIOS (%d).",*n);
-        printf("%s",reset); // reset cores
-      }
-    }while((*t < 1)||(*t<=*n)); //Limite das tentativas
+    } while((*n < 1) || (*n > 10));
 
-    printf("\n\n-----------------------------------%s",BRed); //vermelho
-    printf("\nNAVIOS = %d\nTENTATIVAS = %d.\nConfiguração efetuada com sucesso!\n",*n, *t);
-    printf("%s-----------------------------------",reset); // reset cores
+    do {
+      printf("\nDigite a quantidade de TENTATIVAS <10>: ");
+      scanf("%d", t);
+      if((*t < 1) || (*t < *n)){  // Corrigido para garantir que t >= n
+        printf("%s", BRed); // vermelho
+        printf("A quantidade de TENTATIVAS precisa ser >= 1 e >= a quantidade de NAVIOS (%d).", *n);
+        printf("%s", reset); // reset cores
+      }
+    } while((*t < 1) || (*t < *n)); // Limite das tentativas
+
+    printf("\n\n-----------------------------------%s", BRed); // vermelho
+    printf("\nNAVIOS = %d\nTENTATIVAS = %d.\nConfiguração efetuada com sucesso!\n", *n, *t);
+    printf("%s-----------------------------------", reset); // reset cores
+}
+
+int main() {
+    int tentativas, navios;
+    set(&tentativas, &navios);
+    return 0;
 }
 
 
