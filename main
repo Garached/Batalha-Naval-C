@@ -11,6 +11,9 @@ typedef struct navio{
   int coluna; 
 }
 
+// Definição das cores (Códigos ANSI)
+const char *BRed = "\033[1;31m";   // Cor vermelha em negrito
+const char *reset = "\033[0m";     // Reset de cores (voltar ao padrão)
 
 int menu(); //Opções do menu . Usa int pq retorna um valor do tipo inteiro que é necessário pro programa
 void ajuda(); //Informações de como jogar  
@@ -83,8 +86,16 @@ int main() {
     return 0;
 }
 
-
-//tem que criar uma função pra verificar se a coordenada do navio existe mesmo
+//verificar se a coordenada escolhida vai existir mesmo
+int verifica_navio(int n, int l, int c, Navio *navios){
+  int i, v = 0;
+  for(i=0;i<n;i++){
+    if((navios[i].linha == l) && (navios[i].coluna == c)){
+      v = 1;
+    }
+  }
+  return v;
+}
 
 void print_navios (){
 
@@ -94,7 +105,13 @@ int cria_tabuleiro (){
 
 } //tem que salvar as informações do usuario e depois imprimer o tabuleiro preenchido
 
-//Jogar
-void jogar (){
+//Começando a função jogar (CONTINUAR ESSE AINDA!!)
+void jogar(int t, int n){
+    Navio *nav = cria_navios(n); //cria os navios e adiciona as coordenadas aleatórias
+    int **tabuleiro;
+    tabuleiro = cria_tabuleiro(MAX,MAX); //cria o tabuleiro 
+    preenche_tabuleiro(MAX,MAX,tabuleiro); //inicializa o tabuleiro com -1
+    int tt = t; //tt: armazena o número de tentativas total
+    int l, c, acerto = 0; //número de acertos
   
 }
