@@ -9,7 +9,7 @@
 typedef struct navio{ 
   int linha;  
   int coluna; 
-}
+} Navio;
 
 // Definição das cores (Códigos ANSI)
 const char *BRed = "\033[1;31m";   // Cor vermelha em negrito
