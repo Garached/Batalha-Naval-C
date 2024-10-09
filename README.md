@@ -36,8 +36,8 @@
 <h5>
   <ul>
     <li><b>Replit</b>:<br>
-    - Compilação: Abrir o terminal e escrever 'make' (sem as aspas). Ou, caso prefira, rodar o comando: 'gcc main.c dados.c fracao.c -o executavel' (sem as aspas) no terminal.<br>
-    - Execução: Executar o arquivo executavel apos compilar o programa. No Shell, escreva no terminal: './executavel'.
+    - Compilação: Abrir o terminal e escrever 'make' (sem as aspas). Ou, caso prefira, rodar o comando: 'gcc main.c bot.c -o executavel' (sem as aspas) no terminal.<br>
+    - Execução: Executar o arquivo executavel apos compilar o programa. No Shell, escreva no terminal: './batalha_naval'.
     </li>
   </ul>
 </h5>
