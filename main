@@ -58,6 +58,11 @@ void ajuda() {
   getchar(); // Captura o ENTER extra gerado pelo scanf anterior
 }
 
+void sair() {
+    printf("\nAté logo! Espero que tenha gostado da batalha!🚢\n");
+    printf("%s", reset); // reset cores
+}
+
 //quantidade de navios e quantidade de tentativas ficam aqui 
 void set (int *t, int *n){
   do {
