@@ -12,45 +12,50 @@ typedef struct navio{
 } Navio;
 
 // Definição das cores (Códigos ANSI)
-const char *BRed = "\033[1;31m";   // Cor vermelha em negrito
-const char *reset = "\033[0m";     // Reset de cores (voltar ao padrão)
+const char *BRed = "\033[1;31m"; // Cor vermelha em negrito
+const char *BGreen = "\033[1;32m"; // Cor verde em negrito
+const char *reset = "\033[0m";   // Reset de cores (voltar ao padrão)
 
 int menu(); //Opções do menu . Usa int pq retorna um valor do tipo inteiro que é necessário pro programa
 void ajuda(); //Informações de como jogar  
 void set(int *t, int *n); //Atualização do número de tentativas e navios
 void jogar(int t, int n); //Função para jogar
 void sair(); //Mensagem de despedida
+Navio* cria_navios(int n); // Função para criar os navios
+int** cria_tabuleiro(int linhas, int colunas); // Função para criar o tabuleiro
+void preenche_tabuleiro(int linhas, int colunas, int **tabuleiro); // Função para inicializar o tabuleiro
+int verifica_navio(int n, int l, int c, Navio *navios); // Função para verificar se há um navio na posição
 
-int menu () {
-    int opcao;
+int menu() {
+  int opcao;
 
-    printf("\n Escolha uma opção: \n");
-    printf("1 - Novo jogo \n");
-    printf("2 - Configuração \n");
-    printf("3 - Ajuda \n");
-    printf("4 - Sair \n");
-    printf("Digite a opção escolhida: ");
-    
+  printf("\n Escolha uma opção: \n");
+  printf("1 - Novo jogo \n");
+  printf("2 - Configuração \n");
+  printf("3 - Ajuda \n");
+  printf("4 - Sair \n");
+  printf("Digite a opção escolhida: ");
+
+  scanf("%d", &opcao);
+
+  while ((opcao != 1) && (opcao != 2) && (opcao != 3) && (opcao != 4)) {
+    printf("Opção inválida. Tente novamente: ");
     scanf("%d", &opcao);
+  }
 
-    while((opcao != 1) && (opcao != 2) && (opcao != 3) && (opcao != 4));
-    return opcao;   
-    
+  return opcao;
 }
 
-void ajuda(){
-    int opcao;
-  
-    printf("\n Bem-vindo à ajuda do jogo! \n");
-    printf("O objetivo é acertar todos os navios inimigos escondidos no tabuleiro. \n");
-    printf("Você deverá inserir coordenadas para tentar acertar os navios. \n"); //Aqui explicar melhor dps
-    printf("Boa sorte! \n");
 
-    printf("\n\n");
-    printf("Pressione <ENTER> para voltar ao menu.");
+void ajuda() {
+  printf("\n Bem-vindo à ajuda do jogo! \n");
+  printf("O objetivo é acertar todos os navios inimigos escondidos no tabuleiro.\n");
+  printf("Você deverá inserir coordenadas para tentar acertar os navios.\n");
+  printf("Boa sorte!\n");
 
-    scanf("\n"); // ou é getchar()? 
-  
+  printf("\nPressione <ENTER> para voltar ao menu.\n");
+  getchar(); // Captura o ENTER
+  getchar(); // Captura o ENTER extra gerado pelo scanf anterior
 }
 
 //quantidade de navios e quantidade de tentativas ficam aqui 
@@ -97,13 +102,27 @@ int verifica_navio(int n, int l, int c, Navio *navios){
   return v;
 }
 
+// Função para imprimir o tabuleiro
+void imprime_tabuleiro(int linhas, int colunas, int **tabuleiro) {
+  printf("\nTabuleiro:\n");
+  for (int i = 0; i < linhas; i++) {
+    for (int j = 0; j < colunas; j++) {
+      if (tabuleiro[i][j] == -1) {
+        printf("~ "); // água
+      } else if (tabuleiro[i][j] == 0) {
+        printf("%sX %s", BRed, reset); // Erro
+      } else if (tabuleiro[i][j] == 1) {
+        printf("%sN %s", BGreen, reset); // Navio acertado
+      }
+    }
+    printf("\n");
+  }
+}
+
 void print_navios (){
 
 }
 
-int cria_tabuleiro (){
-
-} //tem que salvar as informações do usuario e depois imprimer o tabuleiro preenchido
 
 //Começando a função jogar (CONTINUAR ESSE AINDA!!)
 void jogar(int t, int n){
