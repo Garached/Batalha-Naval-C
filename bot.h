@@ -1,8 +1,16 @@
 #ifndef bot_h
 #define bot_h
 
-void botPosicao();  // Declaração da função
+#define SIZE 10
+#define NUM_NAVIOS 7
 
-void botAtaque();   // Declaração 
+typedef struct {
+    int x;
+    int y;
+} Coordenada;
+
+void botPosicao(Coordenada navios[]);  // Declaração da função
+
+void botAtaque(Coordenada ataques[], int *numAtaques);   // Declaração 
 
 #endif
