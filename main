@@ -1,30 +1,46 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
-#include <stdlib.h> 
-#include "cores.h" //n sei ainda se poe, seria pra quando acerta ou erra (verde, vermelho)
 
-#define MAX 10 //matriz 10x10
+#define SIZE 10
+#define NUM_NAVIOS 7 // número de navios (7)
 
-//Estrutura para navios. Cada navio tem uma coordenada linhaxcoluna
-typedef struct navio{ 
-  int linha;  
-  int coluna; 
-} Navio;
+const char *ARQUIVO_USUARIOS = "usuarios.txt"; // arquivo de usuários em txt
 
 // Definição das cores (Códigos ANSI)
-const char *BRed = "\033[1;31m"; // Cor vermelha em negrito
-const char *BGreen = "\033[1;32m"; // Cor verde em negrito
-const char *reset = "\033[0m";   // Reset de cores (voltar ao padrão)
+const char *BRed = "\033[1;31m";   // Cor vermelha 
+const char *BGreen = "\033[1;32m"; // Cor verde 
+const char *reset = "\033[0m";     // Reset de cores (voltar ao padrão)
 
-int menu(); //Opções do menu . Usa int pq retorna um valor do tipo inteiro que é necessário pro programa
-void ajuda(); //Informações de como jogar  
-void set(int *t, int *n); //Atualização do número de tentativas e navios
-void jogar(int t, int n); //Função para jogar
-void sair(); //Mensagem de despedida
-Navio* cria_navios(int n); // Função para criar os navios
-int** cria_tabuleiro(int linhas, int colunas); // Função para criar o tabuleiro
-void preenche_tabuleiro(int linhas, int colunas, int **tabuleiro); // Função para inicializar o tabuleiro
-int verifica_navio(int n, int l, int c, Navio *navios); // Função para verificar se há um navio na posição
+// Armazenar informações do usuário
+typedef struct {
+  char nome[50];  
+  char senha[50];
+} Usuario;
+
+// Coordenadas
+typedef struct {
+  int x;
+  int y;
+} Coordenada;
+
+// Navios
+typedef struct {
+  int linha;
+  int coluna;
+} Navio;
+
+// Prototipação das funções
+int login_usuario();
+void cadastrar_usuario();
+int menu();
+int menu_pos_login();
+void exibirTabuleiroJogador(char tabuleiro[SIZE][SIZE]);
+void exibirTabuleiroBot(char tabuleiro[SIZE][SIZE]);
+void insereNaviosJogador(int **tabuleiro, Navio *navios);
+void posicaoBot(
+    Coordenada *naviosBot); // função para gerar posições do bot
 
 int menu() {
   int opcao;
