@@ -100,9 +100,31 @@ int menu() {
 int main() {
     int op = menu(); // Chama a função menu
 
-    if (op == 1) { // Apenas inicia o jogo se o login for bem-sucedido
-        // Chame aqui a função jogar ou outras funcionalidades que você queira implementar
+    if (op == 1) { // 
+        
     }
 
     return 0; // Retorna 0 para o fim do programa
+}
+
+// Menu pós-login
+int menu_pos_login() {
+  int opcao;
+
+  do {
+    printf("\nEscolha uma opção:\n");
+    printf("1 - Jogar\n");
+    printf("2 - Sair\n");
+    printf("Digite a opção escolhida: ");
+    scanf("%d", &opcao);
+
+    if (opcao == 1) {
+      return 1; // Jogar
+    } else if (opcao == 2) {
+      printf("Saindo do jogo...\n");
+      return 0; // Sair
+    }
+  } while (opcao != 2);
+
+  return 0; 
 }
