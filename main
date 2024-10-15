@@ -42,70 +42,68 @@ void insereNaviosJogador(int **tabuleiro, Navio *navios);
 void posicaoBot(
     Coordenada *naviosBot); // função para gerar posições do bot
 
+// Menu principal
 int menu() {
   int opcao;
 
-  printf("\n Escolha uma opção: \n");
-  printf("1 - Novo jogo \n");
-  printf("2 - Configuração \n");
-  printf("3 - Ajuda \n");
-  printf("4 - Sair \n");
-  printf("Digite a opção escolhida: ");
-
-  scanf("%d", &opcao);
-
-  while ((opcao != 1) && (opcao != 2) && (opcao != 3) && (opcao != 4)) {
-    printf("Opção inválida. Tente novamente: ");
-    scanf("%d", &opcao);
-  }
-
-  return opcao;
-}
-
-
-void ajuda() {
-  printf("\n Bem-vindo à ajuda do jogo! \n");
-  printf("O objetivo é acertar todos os navios inimigos escondidos no tabuleiro.\n");
-  printf("Você deverá inserir coordenadas para tentar acertar os navios.\n");
-  printf("Boa sorte!\n");
-
-  printf("\nPressione <ENTER> para voltar ao menu.\n");
-  getchar(); // Captura o ENTER
-  getchar(); // Captura o ENTER extra gerado pelo scanf anterior
-}
-
-void sair() {
-    printf("\nAté logo! Espero que tenha gostado da batalha!🚢\n");
-    printf("%s", reset); // reset cores
-}
-
-//quantidade de navios e quantidade de tentativas ficam aqui 
-void set (int *t, int *n){
   do {
-      printf("\nDigite a quantidade de NAVIOS <3>: ");
-      scanf("%d", n);
-      if((*n < 1) || (*n > 10)){ 
-        printf("%s", BRed); // vermelho
-        printf("A quantidade de NAVIOS precisa ser >= 1 e <= 10.");
-        printf("%s", reset); // reset cores
-      }
-    } while((*n < 1) || (*n > 10));
+    printf("Escolha uma opção:\n");
+    printf("1 - Cadastrar Usuário\n");
+    printf("2 - Fazer Login\n");
+    printf("3 - Sair\n");
+    printf("Digite a opção escolhida: ");
+    scanf("%d", &opcao);
 
-    do {
-      printf("\nDigite a quantidade de TENTATIVAS <10>: ");
-      scanf("%d", t);
-      if((*t < 1) || (*t < *n)){  // Corrigido para garantir que t >= n
-        printf("%s", BRed); // vermelho
-        printf("A quantidade de TENTATIVAS precisa ser >= 1 e >= a quantidade de NAVIOS (%d).", *n);
-        printf("%s", reset); // reset cores
+    if (opcao == 1) {
+      cadastrar_usuario();
+    } else if (opcao == 2) {
+      if (login_usuario()) { // Verifique se o login foi bem-sucedido
+        return 1;            // Retorna 1 para indicar login bem-sucedido
       }
-    } while((*t < 1) || (*t < *n)); // Limite das tentativas
+    }
+  } while (opcao != 3);
 
-    printf("\n\n-----------------------------------%s", BRed); // vermelho
-    printf("\nNAVIOS = %d\nTENTATIVAS = %d.\nConfiguração efetuada com sucesso!\n", *n, *t);
-    printf("%s-----------------------------------", reset); // reset cores
+  printf("Saindo...\n");
+  return 0; // Retorna 0 para indicar saída
 }
 
+// Função para exibir o tabuleiro do jogador
+void exibirTabuleiroJogador(char tabuleiro[SIZE][SIZE]) {
+  printf("Tabuleiro do Jogador:\n");
+  printf("   ");
+  for (int i = 1; i <= SIZE; i++) {
+    printf(" %d", i);
+  }
+  printf("\n");
+
+  for (int i = 0; i < SIZE; i++) {
+    printf("%2d ", i + 1);
+    for (int j = 0; j < SIZE; j++) {
+      printf(" %c", tabuleiro[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+// Função para exibir o tabuleiro do bot
+void exibirTabuleiroBot(char tabuleiro[SIZE][SIZE]) {
+  printf("Tabuleiro do Bot:\n");
+  printf("   ");
+  for (int i = 1; i <= SIZE; i++) {
+    printf(" %d", i);
+  }
+  printf("\n");
+
+  for (int i = 0; i < SIZE; i++) {
+    printf("%2d ", i + 1);
+    for (int j = 0; j < SIZE; j++) {
+      printf(" %c", tabuleiro[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+//arruma a partir daqui
 int main() {
     int tentativas, navios;
     set(&tentativas, &navios);
